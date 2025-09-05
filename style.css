@@ -129,3 +129,10 @@ a:focus,button:focus,input:focus{outline:3px solid rgba(125,211,252,0.12);outlin
     color: var(--text);
     margin: 0;
 }
+
+/* Footer contact links */
+.footer-inner{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap}
+.contact-links{display:flex;gap:12px;align-items:center}
+.contact-link{display:inline-flex;gap:8px;align-items:center;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
+.contact-link .icon{opacity:0.9}
+.contact-link:hover{color:var(--text);background:rgba(11,61,145,0.06)}
