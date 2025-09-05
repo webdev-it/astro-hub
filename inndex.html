@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo Shop — Интернет-магазин</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-row">
+            <div class="brand">Demo Shop</div>
+            <div class="search">
+                <input id="searchInput" type="search" placeholder="Поиск товаров..." />
+            </div>
+            <div class="header-actions">
+                <button id="cartBtn" class="btn">Корзина (<span id="cartCount">0</span>)</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Добро пожаловать в Demo Shop</h1>
+            <p>Качественные товары, удобная корзина и простой макет — попробуйте прямо сейчас.</p>
+        </section>
+
+        <section class="products-section">
+            <h2>Товары</h2>
+            <div id="products" class="products-grid">
+                <!-- Товары рендерятся скриптом -->
+            </div>
+        </section>
+
+        <aside id="cartPanel" class="cart-panel hidden" aria-hidden="true">
+            <h3>Ваша корзина</h3>
+            <div id="cartItems" class="cart-items"></div>
+            <div class="cart-footer">
+                <div class="total">Итого: <span id="cartTotal">0.00</span> ₽</div>
+                <div class="cart-actions">
+                    <button id="clearCart" class="btn btn-ghost">Очистить</button>
+                    <button id="checkout" class="btn">Оформить заказ</button>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© <span id="year"></span> Demo Shop — демонстрационный сайт.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
