@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-        <!-- Decorative space layers: stars and moon (purely visual) -->
         <div class="space-layers" aria-hidden="true">
             <div class="stars stars--far"></div>
             <div class="stars stars--near"></div>
@@ -24,29 +23,27 @@
         </header>
 
         <main class="main">
-            <section class="hero">
-                <h1>Welcome to AstroHub</h1>
-                <p>This website documents our projects for the NASA Space Apps Challenge.</p>
-            </section>
+            
 
-            <section id="about" class="info">
-                <h2>About Us</h2>
-                <p>We are a team participating in the NASA Space Apps Challenge since 2024. Each year we publish one project here.
-                    <br><br>
-                    <div class="centered">
-                        <div class="members-box">
-                            <h3>Team members:</h3>
-                    
-                            <h2 class="members">Tukhtaev Muhammadsalmon</h2>
-                                <br>
-                            <h2 class="members">Abdumalik Abdumalikov</h2>
-                        </div>
-                    </div>
-                </p>
+            <section class="projects">
+                <h2>Our Projects</h2>
+                <div class="projects-list">
+                    <article class="project-card">
+                        <header>
+                            <h3>ORRERY <small class="muted">— 2024</small></h3>
+                        </header>
+                        <p>A web application that visualizes our solar system and helps users to learn and explore planets and asteroids.</p>
+                        <a class="btn" href="projects/2024/index.html">Explore</a>
+                    </article>
+                    <article class="project-card">
+                        <header>
+                            <h3>Meteor <small class="muted">— 2025</small></h3>
+                        </header>
+                        <p>Simulator exploding earth</p>
+                        <a class="btn" href="" onclick="alert('This project is not available now!\nWe are developing it :\)')">Details</a>
+                    </article>
+                </div>
             </section>
-            <div class="centered">
-            <a class="button" href="projects.html">Projects</a>
-            </div>
 
         </main>
 

@@ -1,67 +1,123 @@
+/* AstroHub — Cosmic / NASA-inspired design
+	 - Uses variable theming, responsive layout
+	 - Starfield background, glass cards, NASA blue + vector red accent
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap');
+
 :root{
-    --bg:#f6f7fb;
-    --card:#ffffff;
-    --accent:#4f46e5;
-    --muted:#6b7280;
-    --success:#10b981;
-    --danger:#ef4444;
-    --shadow: 0 6px 18px rgba(15,23,42,0.08);
-    --max-width:1100px;
-    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	--bg-1:#020417; /* deep space */
+	--bg-2:#071a3a; /* gradient */
+	--card: rgba(255,255,255,0.04);
+	--glass: rgba(255,255,255,0.03);
+	--muted: #9fb7d8;
+	--text: #e9f4ff;
+	--accent-blue: #0b3d91; /* NASA blue */
+	--accent-red: #d62828;  /* vector red */
+	--radius:14px;
+	--max-width:1100px;
 }
 
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
-    margin:0;
-    background:linear-gradient(180deg,#f8fafc, #eef2ff 60%);
-    color:#111827;
-    -webkit-font-smoothing:antialiased;
+	margin:0;
+	font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+	color:var(--text);
+	background: radial-gradient(ellipse at bottom right, rgba(11,61,145,0.06) 0%, transparent 30%), linear-gradient(180deg,var(--bg-1),var(--bg-2));
+	background-attachment: fixed;
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
 }
 
-.container{max-width:var(--max-width);margin:0 auto;padding:20px}
+.site{max-width:var(--max-width);margin:0 auto;padding:28px}
+.site-header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:12px;font-weight:700}
+.logo::before{content:'';display:inline-block;width:44px;height:44px;border-radius:50%;background:conic-gradient(from 90deg,#0b3d91 0deg,#0b3d91 180deg, transparent 180deg), radial-gradient(circle at 35% 30%, rgba(255,255,255,0.05), transparent 30%);box-shadow:0 4px 14px rgba(11,61,145,0.24);position:relative}
+.logo span{display:block;font-family:Orbitron,monospace}
 
-.site-header{background:transparent;padding:14px 0}
-.header-row{display:flex;align-items:center;gap:16px}
-.brand{font-weight:700;color:var(--accent);font-size:22px}
-.search{flex:1}
-.search input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid #e6e9ef}
-.header-actions .btn{white-space:nowrap}
+.nav a{color:var(--muted);text-decoration:none;margin-left:18px;padding:8px;border-radius:10px}
+.nav a:hover{color:var(--text);background:rgba(255,255,255,0.02)}
 
-.hero{background:var(--card);padding:28px;border-radius:12px;box-shadow:var(--shadow);margin-bottom:20px;text-align:center}
-.hero h1{margin:0 0 8px;font-size:28px}
-.hero p{margin:0;color:var(--muted)}
+.main{min-height:68vh;padding-top:18px}
+.hero{padding:40px;border-radius:18px;background:linear-gradient(180deg, rgba(11,61,145,0.06), rgba(255,255,255,0.01));display:flex;flex-direction:column;gap:12px}
+.hero h1{font-family:Orbitron,monospace;font-weight:700;margin:0;font-size:44px;letter-spacing:0.6px;color:var(--text)}
+.hero p{margin:0;color:var(--muted);max-width:70%}
+.cta{display:inline-block;margin-top:12px;padding:12px 18px;border-radius:12px;background:var(--accent-blue);color:#fff;text-decoration:none;font-weight:700;box-shadow:0 8px 20px rgba(11,61,145,0.28)}
 
-.products-section h2{margin:8px 0 16px}
-.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.product-card{background:var(--card);border-radius:10px;padding:12px;box-shadow:var(--shadow);display:flex;flex-direction:column}
-.product-thumb{height:160px;border-radius:8px;background:linear-gradient(135deg,#eef2ff,#fff);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
-.product-thumb img{max-width:100%;max-height:100%;object-fit:contain}
-.product-title{font-weight:600;margin:0 0 6px}
-.product-desc{flex:1;color:var(--muted);font-size:14px;margin-bottom:12px}
-.product-meta{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.price{font-weight:700;color:#111827}
-.btn{background:var(--accent);color:#fff;padding:9px 12px;border-radius:8px;border:none;cursor:pointer}
-.btn-ghost{background:transparent;border:1px solid #e6e9ef;color:var(--muted)}
+.info,.projects{margin-top:22px;padding:20px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border-radius:12px}
 
-.cart-panel{position:fixed;right:22px;top:90px;width:320px;background:var(--card);box-shadow:var(--shadow);padding:14px;border-radius:12px;z-index:80}
-.cart-panel.hidden{display:none}
-.cart-items{max-height:300px;overflow:auto;margin:8px 0}
-.cart-item{display:flex;gap:10px;align-items:center;padding:8px;border-radius:8px;border:1px solid #f1f3f5;margin-bottom:8px}
-.cart-item .meta{flex:1}
-.cart-item .meta h4{margin:0;font-size:14px}
-.qty-controls{display:flex;gap:6px;align-items:center}
-.small{font-size:13px;color:var(--muted)}
-.cart-footer{display:flex;flex-direction:column;gap:8px}
-.cart-actions{display:flex;gap:8px;justify-content:flex-end}
+.projects-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:14px}
+.project-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+.project-card h3{margin:0 0 6px;font-family:Orbitron,monospace;font-size:18px}
+.project-card p{margin:0;color:var(--muted);font-size:14px}
+.project-card .muted{color:var(--muted);font-size:13px;margin-left:8px}
+.project-card a.btn{display:inline-block;margin-top:12px;padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent-blue);text-decoration:none;font-weight:600}
+.project-card a.btn:hover{background:rgba(11,61,145,0.06);box-shadow:0 6px 18px rgba(11,61,145,0.08)}
 
-.site-footer{padding:24px 0;text-align:center;color:var(--muted);margin-top:40px}
+.footer{margin-top:30px;text-align:center;color:var(--muted)}
 
-@media (max-width:700px){
-    .header-row{flex-direction:column;align-items:stretch}
-    .cart-panel{right:12px;left:12px;top:auto;bottom:12px;width:auto}
+/* Starfield decorative layer */
+.site::after{content:'';position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,0.6) 0.6px, transparent 0.6px), radial-gradient(rgba(255,255,255,0.35) 0.9px, transparent 0.9px);background-size:600px 600px, 280px 280px;opacity:0.18;mix-blend-mode:screen}
+
+/* subtle twinkle */
+@keyframes twinkle{0%,100%{opacity:0.18}50%{opacity:0.32}}
+.site::after{animation:twinkle 6s linear infinite}
+
+/* Responsive */
+@media (max-width:800px){
+	.hero h1{font-size:28px}
+	.hero p{max-width:100%}
+	.site{padding:18px}
 }
 
-/* small utilities */
-.hidden{display:none}
+/* Small accessibility focus */
+a:focus,button:focus,input:focus{outline:3px solid rgba(125,211,252,0.12);outline-offset:3px}
+
+/* Utility */
 .muted{color:var(--muted)}
+
+/* Space layers */
+.space-layers{position:fixed;inset:0;pointer-events:none;z-index:0}
+.stars{position:absolute;inset:0;background-repeat:repeat;opacity:0.9;transform:translateZ(0);will-change:transform}
+.stars--far{background-image:radial-gradient(rgba(255,255,255,0.6) 0.6px, transparent 0.6px);background-size:900px 900px;opacity:0.12}
+.stars--near{background-image:radial-gradient(rgba(255,255,255,0.9) 0.8px, transparent 0.8px);background-size:280px 280px;opacity:0.18;mix-blend-mode:screen}
+
+.moon{position:absolute;right:6%;top:8%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 30% 25%, #fff 0%, #f0f3f7 8%, #d7dbe0 15%, #a8b0b8 45%, #6f7a86 100%);box-shadow:0 30px 80px rgba(2,6,23,0.6), inset -10px -8px 30px rgba(255,255,255,0.06);transform:translateZ(0);will-change:transform;filter:drop-shadow(0 12px 24px rgba(2,6,23,0.6))}
+.moon::after{content:'';position:absolute;left:22%;top:36%;width:36%;height:26%;border-radius:50%;background:linear-gradient(180deg, rgba(2,6,23,0.04), rgba(255,255,255,0.02));mix-blend-mode:overlay}
+
+@media (max-width:800px){
+	.moon{width:120px;height:120px;right:6%;top:6%;opacity:0.95}
+	.stars--far{background-size:600px 600px}
+}
+
+/* Put content above layers */
+.site{position:relative;z-index:5;background:transparent}
+
+
+.button {
+    display:inline-block;margin-top:12px;padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent-blue);text-decoration:none;font-weight:600;font-size: 36px;
+}
+
+.button:hover{background:rgba(11,61,145,0.06);box-shadow:0 6px 18px rgba(11,61,145,0.08)}
+
+.centered {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.members-box {
+    display: inline-block;
+    padding: 20px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02));
+    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    text-align: left;
+}
+
+.members {
+    font-size: 24px;
+    color: var(--text);
+    margin: 0;
+}
