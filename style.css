@@ -94,6 +94,14 @@ a:focus,button:focus,input:focus{outline:3px solid rgba(125,211,252,0.12);outlin
 /* Put content above layers */
 .site{position:relative;z-index:5;background:transparent}
 
+/* Inline SVG moon adjustments */
+.moon-svg{position:absolute;right:6%;top:8%;width:220px;height:220px;transform-origin:center center;will-change:transform;filter:drop-shadow(0 14px 30px rgba(2,6,23,0.6));z-index:1}
+.moon-svg .craters{transform-origin:center center;opacity:0.95}
+.moon-svg .moon-shine{transform-origin:left center}
+.moon-svg .moon-shine{animation:shine 4s ease-in-out infinite}
+@keyframes shine{0%{opacity:0.18;transform:translateX(-6px)}50%{opacity:0.9;transform:translateX(6px)}100%{opacity:0.18;transform:translateX(-6px)}}
+
+
 
 .button {
     display:inline-block;margin-top:12px;padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent-blue);text-decoration:none;font-weight:600;font-size: 36px;
