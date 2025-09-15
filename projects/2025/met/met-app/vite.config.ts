@@ -5,11 +5,16 @@ import react from '@vitejs/plugin-react'
 declare const process: any
 
 // https://vite.dev/config/
-export default defineConfig(() => {
-  const base = process.env.BASE_PATH || '/'
+export default defineConfig(({ mode }) => {
+  const isProduction = mode === 'production'
+  
   return {
-    base,
+    base: isProduction ? '/astro-hub/projects/2025/met/' : '/',
     plugins: [react()],
+    build: {
+      outDir: isProduction ? '../../../../docs/projects/2025/met' : 'dist',
+      emptyOutDir: false
+    }
   }
 })
 /*

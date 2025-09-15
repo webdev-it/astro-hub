@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>404 — Страница не найдена · Astro Hub</title>
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+      /* Small overrides for the error layout */
+      .hero{padding:28px;border-radius:14px;text-align:center}
+      .error-code{font-family:Orbitron,monospace;font-size:120px;line-height:1;color:var(--text);margin:8px 0}
+      .error-sub{color:var(--muted);font-size:18px;margin-bottom:18px}
+      .error-actions{display:flex;gap:12px;justify-content:center;margin-top:18px}
+      .error-actions a.btn{padding:12px 18px;border-radius:12px}
+      .astro-illustration{width:220px;height:220px;margin:18px auto 6px;display:block}
+      @media (max-width:640px){.error-code{font-size:64px}.astro-illustration{width:140px;height:140px}}
+    </style>
+  </head>
+  <body>
+    <div class="space-layers" aria-hidden="true">
+      <div class="stars stars--far"></div>
+      <div class="stars stars--near"></div>
+      <!-- Inline SVG moon (decorative) -->
+      <svg id="scene-moon" class="moon-svg" viewBox="0 0 200 200" role="img" aria-hidden="true">
+        <defs>
+          <radialGradient id="g1" cx="30%" cy="25%" r="80%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+            <stop offset="20%" stop-color="#f3f6f9" stop-opacity="0.95" />
+            <stop offset="45%" stop-color="#cfd6dc" stop-opacity="0.9" />
+            <stop offset="100%" stop-color="#9aa3ad" stop-opacity="1" />
+          </radialGradient>
+          <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="2" result="b" />
+            <feBlend in="SourceGraphic" in2="b" mode="screen" />
+          </filter>
+          <linearGradient id="shine" x1="0" x2="1">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.28" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <circle cx="100" cy="100" r="90" fill="url(#g1)" filter="url(#soft)" />
+        <!-- craters -->
+        <g class="craters" fill="#aeb6bd" fill-opacity="0.85">
+          <ellipse cx="62" cy="72" rx="12" ry="8" />
+          <ellipse cx="140" cy="60" rx="9" ry="6" />
+          <ellipse cx="120" cy="130" rx="18" ry="10" />
+          <ellipse cx="70" cy="142" rx="10" ry="7" />
+          <ellipse cx="96" cy="98" rx="6" ry="4" />
+        </g>
+        <!-- subtle shine that will animate -->
+        <g class="moon-shine" opacity="0.9">
+          <path d="M24 36 C 52 18, 92 10, 128 22" stroke="url(#shine)" stroke-width="18" stroke-linecap="round" fill="none" opacity="0.6"/>
+        </g>
+      </svg>
+    </div>
+
+    <main class="site" role="main">
+      <section class="hero" aria-labelledby="err-title">
+        <img class="astro-illustration" src="" alt="" aria-hidden="true">
+        <div class="error-code" id="err-title">404</div>
+        <h1 class="error-sub">Страница не найдена</h1>
+        <p class="muted">Похоже, такой страницы не существует или адрес был введён неверно.</p>
+
+        <div class="error-actions">
+          <a class="btn primary" href="/index.html">На главную</a>
+          <a class="btn" href="/projects.html">Проекты</a>
+        </div>
+
+        <p class="muted" style="margin-top:18px;font-size:13px">Если вы уверены, что адрес верный, попробуйте обновить страницу или вернуться назад.</p>
+      </section>
+    </main>
+
+    <footer class="footer" style="position:relative;z-index:5">
+      <div class="footer-inner">
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:support@astro-hub.space">
+            <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            support@astro-hub.space
+          </a>
+          <a class="contact-link" href="https://t.me/abdumalikovvvvvvv" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 3L3 10.5l4.5 1.5L9 20l3-3 5 3 3-15z"/></svg>
+            Telegram
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/script.js" defer></script>
+  </body>
+</html>
