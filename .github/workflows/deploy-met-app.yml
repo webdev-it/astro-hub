@@ -1,0 +1,113 @@
+name: Deploy met-app to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-met-app
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: 'projects/2025/met/met-app/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: projects/2025/met/met-app
+        run: npm ci
+
+      - name: Build app
+        working-directory: projects/2025/met/met-app
+        run: BASE_PATH=/astro-hub/projects/2025/met/met-app/ npm run build
+
+      - name: Create staging directory structure
+        run: |
+          mkdir -p site/projects/2025/met/met-app
+
+      - name: Copy built files to staging
+        run: |
+          cp -r projects/2025/met/met-app/dist/* \
+            site/projects/2025/met/met-app/
+
+      - name: Copy index.html as 404.html for SPA fallback
+        run: |
+          cp projects/2025/met/met-app/dist/index.html \
+            site/projects/2025/met/met-app/404.html
+
+      - name: Create site-level 404.html
+        run: |
+          cat > site/404.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>404 - Page Not Found | Astro Hub</title>
+            <style>
+              body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 2rem;
+                text-align: center;
+              }
+              h1 { color: #e74c3c; margin-bottom: 1rem; }
+              .error-code { font-size: 4rem; font-weight: bold; color: #3498db; }
+              .btn {
+                display: inline-block;
+                background: #3498db;
+                color: white;
+                padding: 0.8rem 1.5rem;
+                text-decoration: none;
+                border-radius: 5px;
+                margin: 1rem 0.5rem;
+              }
+              .btn:hover { background: #2980b9; }
+            </style>
+          </head>
+          <body>
+            <div class="error-code">404</div>
+            <h1>Page Not Found</h1>
+            <p>The page you're looking for doesn't exist or may have been moved.</p>
+            <div>
+              <a href="/astro-hub/" class="btn">Go to Astro Hub Home</a>
+              <a href="/astro-hub/projects/2025/met/met-app/" class="btn">Visit Met App</a>
+            </div>
+          </body>
+          </html>
+          EOF
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
