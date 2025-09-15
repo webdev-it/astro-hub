@@ -1,0 +1,138 @@
+/* AstroHub — Cosmic / NASA-inspired design
+	 - Uses variable theming, responsive layout
+	 - Starfield background, glass cards, NASA blue + vector red accent
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap');
+
+:root{
+	--bg-1:#020417; /* deep space */
+	--bg-2:#071a3a; /* gradient */
+	--card: rgba(255,255,255,0.04);
+	--glass: rgba(255,255,255,0.03);
+	--muted: #9fb7d8;
+	--text: #e9f4ff;
+	--accent-blue: #0b3d91; /* NASA blue */
+	--accent-red: #d62828;  /* vector red */
+	--radius:14px;
+	--max-width:1100px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+	margin:0;
+	font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+	color:var(--text);
+	background: radial-gradient(ellipse at bottom right, rgba(11,61,145,0.06) 0%, transparent 30%), linear-gradient(180deg,var(--bg-1),var(--bg-2));
+	background-attachment: fixed;
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+}
+
+.site{max-width:var(--max-width);margin:0 auto;padding:28px}
+.site-header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:12px;font-weight:700}
+.logo::before{content:'';display:inline-block;width:44px;height:44px;border-radius:50%;background:conic-gradient(from 90deg,#0b3d91 0deg,#0b3d91 180deg, transparent 180deg), radial-gradient(circle at 35% 30%, rgba(255,255,255,0.05), transparent 30%);box-shadow:0 4px 14px rgba(11,61,145,0.24);position:relative}
+.logo span{display:block;font-family:Orbitron,monospace}
+
+.nav a{color:var(--muted);text-decoration:none;margin-left:18px;padding:8px;border-radius:10px}
+.nav a:hover{color:var(--text);background:rgba(255,255,255,0.02)}
+
+.main{min-height:68vh;padding-top:18px}
+.hero{padding:40px;border-radius:18px;background:linear-gradient(180deg, rgba(11,61,145,0.06), rgba(255,255,255,0.01));display:flex;flex-direction:column;gap:12px}
+.hero h1{font-family:Orbitron,monospace;font-weight:700;margin:0;font-size:44px;letter-spacing:0.6px;color:var(--text)}
+.hero p{margin:0;color:var(--muted);max-width:70%}
+.cta{display:inline-block;margin-top:12px;padding:12px 18px;border-radius:12px;background:var(--accent-blue);color:#fff;text-decoration:none;font-weight:700;box-shadow:0 8px 20px rgba(11,61,145,0.28)}
+
+.info,.projects{margin-top:22px;padding:20px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border-radius:12px}
+
+.projects-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:14px}
+.project-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+.project-card h3{margin:0 0 6px;font-family:Orbitron,monospace;font-size:18px}
+.project-card p{margin:0;color:var(--muted);font-size:14px}
+.project-card .muted{color:var(--muted);font-size:13px;margin-left:8px}
+.project-card a.btn{display:inline-block;margin-top:12px;padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent-blue);text-decoration:none;font-weight:600}
+.project-card a.btn:hover{background:rgba(11,61,145,0.06);box-shadow:0 6px 18px rgba(11,61,145,0.08)}
+
+.footer{margin-top:30px;text-align:center;color:var(--muted)}
+
+/* Starfield decorative layer */
+.site::after{content:'';position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,0.6) 0.6px, transparent 0.6px), radial-gradient(rgba(255,255,255,0.35) 0.9px, transparent 0.9px);background-size:600px 600px, 280px 280px;opacity:0.18;mix-blend-mode:screen}
+
+/* subtle twinkle */
+@keyframes twinkle{0%,100%{opacity:0.18}50%{opacity:0.32}}
+.site::after{animation:twinkle 6s linear infinite}
+
+/* Responsive */
+@media (max-width:800px){
+	.hero h1{font-size:28px}
+	.hero p{max-width:100%}
+	.site{padding:18px}
+}
+
+/* Small accessibility focus */
+a:focus,button:focus,input:focus{outline:3px solid rgba(125,211,252,0.12);outline-offset:3px}
+
+/* Utility */
+.muted{color:var(--muted)}
+
+/* Space layers */
+.space-layers{position:fixed;inset:0;pointer-events:none;z-index:0}
+.stars{position:absolute;inset:0;background-repeat:repeat;opacity:0.9;transform:translateZ(0);will-change:transform}
+.stars--far{background-image:radial-gradient(rgba(255,255,255,0.6) 0.6px, transparent 0.6px);background-size:900px 900px;opacity:0.12}
+.stars--near{background-image:radial-gradient(rgba(255,255,255,0.9) 0.8px, transparent 0.8px);background-size:280px 280px;opacity:0.18;mix-blend-mode:screen}
+
+.moon{position:absolute;right:6%;top:8%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 30% 25%, #fff 0%, #f0f3f7 8%, #d7dbe0 15%, #a8b0b8 45%, #6f7a86 100%);box-shadow:0 30px 80px rgba(2,6,23,0.6), inset -10px -8px 30px rgba(255,255,255,0.06);transform:translateZ(0);will-change:transform;filter:drop-shadow(0 12px 24px rgba(2,6,23,0.6))}
+.moon::after{content:'';position:absolute;left:22%;top:36%;width:36%;height:26%;border-radius:50%;background:linear-gradient(180deg, rgba(2,6,23,0.04), rgba(255,255,255,0.02));mix-blend-mode:overlay}
+
+@media (max-width:800px){
+	.moon{width:120px;height:120px;right:6%;top:6%;opacity:0.95}
+	.stars--far{background-size:600px 600px}
+}
+
+/* Put content above layers */
+.site{position:relative;z-index:5;background:transparent}
+
+/* Inline SVG moon adjustments */
+.moon-svg{position:absolute;right:6%;top:8%;width:220px;height:220px;transform-origin:center center;will-change:transform;filter:drop-shadow(0 14px 30px rgba(2,6,23,0.6));z-index:1}
+.moon-svg .craters{transform-origin:center center;opacity:0.95}
+.moon-svg .moon-shine{transform-origin:left center}
+.moon-svg .moon-shine{animation:shine 4s ease-in-out infinite}
+@keyframes shine{0%{opacity:0.18;transform:translateX(-6px)}50%{opacity:0.9;transform:translateX(6px)}100%{opacity:0.18;transform:translateX(-6px)}}
+
+
+
+.button {
+    display:inline-block;margin-top:12px;padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent-blue);text-decoration:none;font-weight:600;font-size: 36px;
+}
+
+.button:hover{background:rgba(11,61,145,0.06);box-shadow:0 6px 18px rgba(11,61,145,0.08)}
+
+.centered {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.members-box {
+    display: inline-block;
+    padding: 20px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02));
+    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    text-align: left;
+}
+
+.members {
+    font-size: 24px;
+    color: var(--text);
+    margin: 0;
+}
+
+/* Footer contact links */
+.footer-inner{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap}
+.contact-links{display:flex;gap:12px;align-items:center}
+.contact-link{display:inline-flex;gap:8px;align-items:center;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
+.contact-link .icon{opacity:0.9}
+.contact-link:hover{color:var(--text);background:rgba(11,61,145,0.06)}
