@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects — AstroHub</title>
+    <meta name="description" content="Browse our NASA Space Apps Challenge projects" />
+    <style>
+        /* Minimal inline styles for GitHub Pages compatibility */
+        * { box-sizing: border-box; }
+        html, body { height: 100%; margin: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            color: #e9f4ff;
+            background: linear-gradient(180deg, #020417, #071a3a);
+            background-attachment: fixed;
+            line-height: 1.6;
+        }
+        .site {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 28px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+        .nav a {
+            color: #9fb7d8;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+        .nav a:hover {
+            color: #e9f4ff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .nav a.active {
+            color: #e9f4ff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .main {
+            flex: 1;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .page-header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin: 0 0 16px 0;
+            letter-spacing: 0.6px;
+        }
+        .page-header p {
+            font-size: 18px;
+            color: #9fb7d8;
+            margin: 0;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        .project-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+        .project-card h3 {
+            margin: 0 0 8px 0;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .project-year {
+            color: #9fb7d8;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+        .project-card p {
+            color: #9fb7d8;
+            margin: 16px 0 24px 0;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .btn-primary {
+            background: #0b3d91;
+            color: #ffffff;
+            box-shadow: 0 6px 16px rgba(11, 61, 145, 0.25);
+        }
+        .btn-primary:hover {
+            background: #0f4399;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(11, 61, 145, 0.35);
+        }
+        .btn-accent {
+            background: #d62828;
+            color: #ffffff;
+            box-shadow: 0 6px 16px rgba(214, 40, 40, 0.25);
+        }
+        .btn-accent:hover {
+            background: #e83030;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(214, 40, 40, 0.35);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #9fb7d8;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover {
+            color: #e9f4ff;
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #9fb7d8;
+            font-size: 14px;
+        }
+        /* Status badges */
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        .status-complete {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+        }
+        .status-development {
+            background: rgba(249, 115, 22, 0.15);
+            color: #f97316;
+        }
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .site { padding: 20px; }
+            .site-header { flex-direction: column; gap: 20px; }
+            .page-header h1 { font-size: 32px; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="site">
+        <header class="site-header">
+            <div class="logo">🌌 AstroHub</div>
+            <nav class="nav">
+                <a href="/astro-hub/">Home</a>
+                <a href="/astro-hub/projects/" class="active">Projects</a>
+            </nav>
+        </header>
+
+        <main class="main">
+            <a href="/astro-hub/" class="back-link">
+                ← Back to Home
+            </a>
+
+            <div class="page-header">
+                <h1>Our Projects</h1>
+                <p>Innovative solutions for NASA Space Apps Challenge</p>
+            </div>
+
+            <div class="projects-grid">
+                <article class="project-card">
+                    <h3>
+                        ORRERY
+                        <span class="project-year">2024</span>
+                        <span class="status-badge status-complete">Complete</span>
+                    </h3>
+                    <p>
+                        A web application that visualizes our solar system and helps users learn and explore planets and asteroids. 
+                        Interactive 3D visualization with detailed planetary data and orbital mechanics.
+                    </p>
+                    <a class="btn btn-primary" href="/astro-hub/projects/2024/">Explore ORRERY</a>
+                </article>
+
+                <article class="project-card">
+                    <h3>
+                        MET (Meteor Earth Tracker)
+                        <span class="project-year">2025</span>
+                        <span class="status-badge status-development">In Development</span>
+                    </h3>
+                    <p>
+                        Advanced meteor impact simulator and Earth defense system. 
+                        Visualize potential asteroid impacts and explore planetary defense strategies with real-time data.
+                    </p>
+                    <a class="btn btn-accent" href="/astro-hub/projects/2025/met/met-app/">Launch MET App</a>
+                </article>
+            </div>
+
+            <section style="text-align: center; padding: 40px 20px; background: rgba(255, 255, 255, 0.02); border-radius: 12px; margin-top: 20px;">
+                <h2 style="margin: 0 0 16px 0; color: #e9f4ff;">About NASA Space Apps Challenge</h2>
+                <p style="color: #9fb7d8; margin: 0; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    NASA's Space Apps Challenge is a global hackathon that engages teams worldwide to collaborate on solutions 
+                    to challenges faced in space exploration and life on Earth.
+                </p>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 AstroHub — NASA Space Apps Challenge</p>
+        </footer>
+    </div>
+</body>
+</html>
